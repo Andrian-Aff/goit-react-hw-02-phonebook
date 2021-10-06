@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
-const Filter = ({filter, onChangeName})=> (
-<label className={s.lable}>Number
+
+const Filter = ({filter, onChangeName, resetFiler})=> (
+<label className={s.label}>Find contacts by name
       <input className={s.input}
           type="text"
           name="filter"
@@ -11,8 +13,16 @@ const Filter = ({filter, onChangeName})=> (
           required
           value={filter}
           onChange={onChangeName}
+          onBlur={resetFiler}
         />
       </label>
 )
+
+Filter.protoTypes = {
+  filter: PropTypes.string.isRequired,
+  onChangeName: PropTypes.func,
+  onBlur: PropTypes.func
+}
+
 export default Filter
 

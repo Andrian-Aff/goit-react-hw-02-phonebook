@@ -1,5 +1,71 @@
-input {
-  display: block;
+.form {
+  margin-bottom: 30px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+.labelForm {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: 'Retina', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.inputForm {
+  margin-left: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.inputForm {
+  font-family: 'Retina', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  text-align: right;
+}
+
+.btnForm {
+  cursor: pointer;
+  font-family: 'Retina', Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  padding: 3px 30px;
+  border: none;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 5px;
+  color: #000;
+  background-color: #ffffff;
+  -webkit-box-shadow: 3px 2px 8px -1px #000000;
+  box-shadow: 3px 2px 8px -1px #000000;
+}
+
+.btnForm:hover {
+  -webkit-box-shadow: 1px 2px 8px -1px #4a4a4a;
+  box-shadow: 1px 2px 8px -1px #4a4a4a;
+  background-color: rgb(5, 153, 155);
+  transition: background-color 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color: #fff;
+}
+
+.btnForm:disabled {
+  pointer-events: none;
+  color: #4a4a4a;
+}
+
+@media screen and (min-width: 768px) {
+  .inputForm {
+    width: 300px;
+  }
+
+  .labelForm {
+    flex-direction: row;
+    justify-content: end;
+    align-items: baseline;
+  }
 }
 
 input:hover,
@@ -7,5 +73,4 @@ input:active,
 input:focus {
   border-color: rgb(5, 153, 155);
   box-shadow: 1px 1px 2px 0 rgb(5, 153, 155);
-  outline: transparent;
 }

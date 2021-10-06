@@ -4,7 +4,7 @@ import contacts from './components/ContactsList/contacts.json'
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactsList';
 import Filter from './components/Filter';
-import './App.css';
+import s from './App.module.css';
 
 class App extends Component {
   state = {
@@ -19,16 +19,7 @@ class App extends Component {
       console.log(e.target.name)
   };
 
-  checkContactName = name => {
-    const {contacts} = this.state
-    if (contacts.find(contact =>
-    contact.name.toLowerCase() === name.toLowerCase()
-    ))
-    return alert(`${name} is already in contacts.`)
-    }
-
   addContact = ({name, number}) => {
-    this.checkContactName(name);
    console.log({name, number})
    const contact = {
    id: shortid.generate(),
@@ -47,8 +38,11 @@ class App extends Component {
 
     return contacts.filter(contact=> contact.name.toLocaleLowerCase().includes(normalizedFilter)||
     contact.number.includes(normalizedFilter));
-
    }
+
+   resetFiler = () => {
+    this.setState({ filter: '' });
+  }
 
   deleteContact = (contactId) => {
     this.setState(({contacts})=> ({
@@ -60,24 +54,28 @@ class App extends Component {
     const {contacts, filter} =this.state;
    
     const visibleContacts =  this.getVisibleContacts()
-    const countContacts = contacts.length
+    // const countContacts = contacts.length
     return (
-      <div className="container">
-        <h1>Phonebook</h1>
-        
-        <ContactForm 
-        onSubmit={this.addContact}/>
+      <div className={s.container}>
+        <div className={s.phonebook}>
+          <h1 className={s.title}>Phonebook</h1>
+          
+          <ContactForm 
+          contacts={contacts}
+          onSubmit={this.addContact}/>
 
-        <h2>Contacts</h2>
-        <Filter 
-        filter={filter}
-        onChangeName={this.handleChangeName}
-        />
-        <p> Total contacts: {countContacts}</p>
-        <ContactList 
-        contacts={visibleContacts} 
-        onDeleteContact={this.deleteContact}
-        />
+          <h2 className={s.titleContacts}>Contacts</h2>
+          <Filter 
+          filter={filter}
+          resetFiler={this.resetFiler}
+          onChangeName={this.handleChangeName}
+          />
+          {/* <p> Total contacts: {countContacts}</p> */}
+          <ContactList 
+          contacts={visibleContacts} 
+          onDeleteContact={this.deleteContact}
+          />
+        </div>
       </div>
     );
   }

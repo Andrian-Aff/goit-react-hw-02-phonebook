@@ -1,22 +1,38 @@
-  import s from './ContactForm.module.css'
+  import s from './ContactForm.module.css';
+  import PropTypes from 'prop-types';
   import React, {Component} from 'react';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
+    disabled: false,
   }
+ 
+  findNameInContact = (event) => {
+    // console.log(event.currentTarget.value)
+
+    if (this.props.contacts.find((contact) =>
+        contact.name.toLowerCase() === event.currentTarget.value.toLowerCase()
+    )) {
+        this.setState({ disabled: true })
+        alert(`${event.currentTarget.value} is already in contacts.`)
+        this.reset();
+    }
+  }
+
   handleChangeName = e =>{
-    const {name, value} = e.target
-    this.setState(
-      {[name]: value})
+    // const {name, value, disabled} = e.target
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value, disabled: false })
+    // this.setState(
+    //   {[name]: value})
       console.log(e.target.name)
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
     this.props.onSubmit(this.state);
-    this.reset();
+    this.reset()
   };
 
   reset =()=> {
@@ -27,11 +43,11 @@ class ContactForm extends Component {
   }
 
   render() {
-    const {name, number} = this.state
+    const {name, number, disabled} = this.state
     return (
   <form className={s.form} onSubmit={this.handleSubmit}>
-    <label className={s.lable}>Name
-      <input className={s.input}
+    <label className={s.labelForm}>Name
+      <input className={s.inputForm}
         type="text"
         name="name"
         placeholder="Sara Winters"
@@ -40,10 +56,11 @@ class ContactForm extends Component {
         required
         value={name}
         onChange={this.handleChangeName}
+        onBlur={this.findNameInContact }
       />
     </label>
-    <label className={s.lable}>Number
-      <input className={s.input}
+    <label className={s.labelForm}>Number
+      <input className={s.inputForm}
           type="tel"
           name="number"
           placeholder="123-45-67"
@@ -55,10 +72,13 @@ class ContactForm extends Component {
         />
       </label>
   
-    <button type="submit" disabled={!name}>Add contact</button>
+    <button className={s.btnForm} type="submit" disabled={disabled}>Add contact</button>
   </form>
    );} 
 }
-  
 
+ContactForm.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.number,
+}
 export default ContactForm;
