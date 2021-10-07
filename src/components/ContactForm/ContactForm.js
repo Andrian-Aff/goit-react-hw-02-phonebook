@@ -6,27 +6,23 @@ class ContactForm extends Component {
   state = {
     name: '',
     number: '',
-    disabled: false,
   }
  
-  findNameInContact = (event) => {
-    // console.log(event.currentTarget.value)
-
-    if (this.props.contacts.find((contact) =>
-        contact.name.toLowerCase() === event.currentTarget.value.toLowerCase()
-    )) {
-        this.setState({ disabled: true })
-        alert(`${event.currentTarget.value} is already in contacts.`)
-        this.reset();
-    }
+  checkedName = ()=> {
+    const {name} = this.state
+    if (this.props.contacts.find(contact => 
+      contact.name.toLowerCase() === name.toLowerCase()))
+      {alert(`${name} is already in contacts.`)
+      this.reset()
+      }
+      
   }
+
 
   handleChangeName = e =>{
     const {name, value} = e.target
-    this.setState({ [name]: value, disabled: false })
-    // this.setState(
-    //   {[name]: value})
-      console.log(e.target.name)
+    this.setState({ [name]: value})
+      console.log(name)
   };
 
   handleSubmit = evt => {
@@ -43,7 +39,7 @@ class ContactForm extends Component {
   }
 
   render() {
-    const {name, number, disabled} = this.state
+    const {name, number} = this.state
     return (
   <form className={s.form} onSubmit={this.handleSubmit}>
     <label className={s.labelForm}>Name
@@ -56,7 +52,7 @@ class ContactForm extends Component {
         required
         value={name}
         onChange={this.handleChangeName}
-        onBlur={this.findNameInContact }
+        onBlur={this.checkedName }
       />
     </label>
     <label className={s.labelForm}>Number
@@ -72,7 +68,7 @@ class ContactForm extends Component {
         />
       </label>
   
-    <button className={s.btnForm} type="submit" disabled={disabled}>Add contact</button>
+    <button className={s.btnForm} type="submit" disabled={!name}>Add contact</button>
   </form>
    );} 
 }
