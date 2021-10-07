@@ -22,8 +22,8 @@ class ContactForm extends Component {
   }
 
   handleChangeName = e =>{
-    // const {name, value, disabled} = e.target
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value, disabled: false })
+    const {name, value} = e.target
+    this.setState({ [name]: value, disabled: false })
     // this.setState(
     //   {[name]: value})
       console.log(e.target.name)

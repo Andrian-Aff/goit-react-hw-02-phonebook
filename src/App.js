@@ -16,7 +16,7 @@ class App extends Component {
     const {name, value} = e.target
     this.setState(
       {[name]: value})
-      console.log(e.target.name)
+      console.log(e.target.name) 
   };
 
   addContact = ({name, number}) => {

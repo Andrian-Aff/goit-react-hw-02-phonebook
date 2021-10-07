@@ -1,5 +1,4 @@
 .container {
-  max-width: 375px;
   margin: auto;
   padding: 20px;
 }
@@ -20,23 +19,7 @@
   margin-bottom: 10px;
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 1024px;
-    min-height: 1000px;
-    /* background-image: url('./pictures/Bg3.png'); */
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
-
-  .phonebook {
-    width: 50%;
-    padding-top: 30px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .container {
-    background-size: 100%;
-  }
+.phonebook {
+  width: 50%;
+  padding-top: 30px;
 }

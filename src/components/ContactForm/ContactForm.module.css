@@ -19,7 +19,7 @@
 .inputForm {
   margin-left: 5px;
   padding: 5px;
-  width: 100%;
+  width: 300px;
 }
 
 .inputForm {
@@ -32,7 +32,7 @@
   cursor: pointer;
   font-family: 'Retina', Arial, Helvetica, sans-serif;
   font-size: 25px;
-  padding: 3px 30px;
+  padding: 3px;
   border: none;
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
@@ -54,18 +54,6 @@
 .btnForm:disabled {
   pointer-events: none;
   color: #4a4a4a;
-}
-
-@media screen and (min-width: 768px) {
-  .inputForm {
-    width: 300px;
-  }
-
-  .labelForm {
-    flex-direction: row;
-    justify-content: end;
-    align-items: baseline;
-  }
 }
 
 input:hover,
